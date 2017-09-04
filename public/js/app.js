@@ -2191,10 +2191,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 params: {
                     quiz_id: this.quiz_id
                 } }).then(function (response) {
-                console.log(response.data.liveQuestion); // ex.: { user: 'Your User'}
-                if (response.data.liveQuestion === null) {
-                    //here redirect
-                }
+                console.log(response.data.liveQuestion);
                 this.liveQuestion = response.data.liveQuestion;
                 this.seconds = response.data.seconds;
             }.bind(this));
@@ -32471,7 +32468,7 @@ var Component = __webpack_require__(1)(
   /* cssModules */
   null
 )
-Component.options.__file = "/home/sstavr04/project1/resources/assets/js/components/Example.vue"
+Component.options.__file = "/home/sstavr04/hint.me/project1/resources/assets/js/components/Example.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Example.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -32509,7 +32506,7 @@ var Component = __webpack_require__(1)(
   /* cssModules */
   null
 )
-Component.options.__file = "/home/sstavr04/project1/resources/assets/js/components/Multiple.vue"
+Component.options.__file = "/home/sstavr04/hint.me/project1/resources/assets/js/components/Multiple.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Multiple.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -32547,7 +32544,7 @@ var Component = __webpack_require__(1)(
   /* cssModules */
   null
 )
-Component.options.__file = "/home/sstavr04/project1/resources/assets/js/components/Question.vue"
+Component.options.__file = "/home/sstavr04/hint.me/project1/resources/assets/js/components/Question.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Question.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -32585,7 +32582,7 @@ var Component = __webpack_require__(1)(
   /* cssModules */
   null
 )
-Component.options.__file = "/home/sstavr04/project1/resources/assets/js/components/Quiz/MultipleShow.vue"
+Component.options.__file = "/home/sstavr04/hint.me/project1/resources/assets/js/components/Quiz/MultipleShow.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] MultipleShow.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -32623,7 +32620,7 @@ var Component = __webpack_require__(1)(
   /* cssModules */
   null
 )
-Component.options.__file = "/home/sstavr04/project1/resources/assets/js/components/Quiz/QuestionShow.vue"
+Component.options.__file = "/home/sstavr04/hint.me/project1/resources/assets/js/components/Quiz/QuestionShow.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] QuestionShow.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -32657,7 +32654,7 @@ var Component = __webpack_require__(1)(
   /* cssModules */
   null
 )
-Component.options.__file = "/home/sstavr04/project1/resources/assets/js/components/Quiz/ShortShow.vue"
+Component.options.__file = "/home/sstavr04/hint.me/project1/resources/assets/js/components/Quiz/ShortShow.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] ShortShow.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -32691,7 +32688,7 @@ var Component = __webpack_require__(1)(
   /* cssModules */
   null
 )
-Component.options.__file = "/home/sstavr04/project1/resources/assets/js/components/Short.vue"
+Component.options.__file = "/home/sstavr04/hint.me/project1/resources/assets/js/components/Short.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Short.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -33001,7 +32998,7 @@ if (false) {
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "short"
-  }, [_vm._v("\n        " + _vm._s(_vm.liveQuestion) + "\n\t")])
+  })
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

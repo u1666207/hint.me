@@ -32,7 +32,6 @@ const app = new Vue({
         this.questions= JSON.parse(this.questions)
     },
 
-
 });
 
 

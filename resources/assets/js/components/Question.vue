@@ -109,10 +109,7 @@
                     params: {
                         quiz_id: this.quiz_id
                     }}).then(function(response){
-                    console.log(response.data.liveQuestion); // ex.: { user: 'Your User'}
-                    if(response.data.liveQuestion === null){
-                    //here redirect
-                    }
+                    console.log(response.data.liveQuestion); 
                     this.liveQuestion = response.data.liveQuestion;
                     this.seconds = response.data.seconds;
                 }.bind(this));

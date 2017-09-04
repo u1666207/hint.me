@@ -255,23 +255,18 @@ class StudentController extends Controller
     public function getQuestion()
     {
         $quiz = Quiz::find(request('quiz_id'));
-        if($quiz->isLive===null){
-            $question=Question::where('id',$quiz->isLive)->with(['multiple','short','hint'])->first(); 
-            
-            $updated = $quiz->updated_at;
-            $finish= $updated->addMinutes($question->minutes)->addSeconds($question->seconds);
 
-            $seconds=$finish->diffInSeconds(Carbon::now());
-            
-          
-            $seconds = gmdate('i:s', $seconds);
-            return response(['liveQuestion'=>$question,'seconds'=>$seconds]);
+        $question=Question::where('id',$quiz->isLive)->with(['multiple','short','hint'])->first(); 
+        
+        $updated = $quiz->updated_at;
+        $finish= $updated->addMinutes($question->minutes)->addSeconds($question->seconds);
 
-        }else{
-            return redirect()->route('home');
+        $seconds=$finish->diffInSeconds(Carbon::now());
+        
+      
+        $seconds = gmdate('i:s', $seconds);
+        return response(['liveQuestion'=>$question,'seconds'=>$seconds]);
 
-            return response(['liveQuestion'=>null,'seconds'=>null]);
-        }
 
     }
 

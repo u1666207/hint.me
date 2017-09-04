@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Hint.Me!</title>
 
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         
@@ -65,6 +65,23 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            li {
+                display: block;
+                color: black; 
+                font-weight: bold;
+            }
+
+            li:before {
+                /*Using a Bootstrap glyphicon as the bullet point*/
+                content: "\e013";
+                font-family: 'Glyphicons Halflings';
+                font-size: 1vi;
+                float: left;
+                margin-top: 4px;
+                
+                color: black;
+            }
         </style>
     </head>
     <body>
@@ -89,28 +106,37 @@
                     <div class="title m-b-md">
                         Hint.Me!
                     </div>
-                    <div class="list-group">
-                        <h4 class="list-group-item-heading">Teacher</h4>
-                        <p class="list-group-item-text">
-                            <li class="list-group-item">Create Quiz Competition with questions</li>
-                            <li class="list-group-item">Add Hints to questions</li>
-                            <li class="list-group-item">Launch Quiz!</li>
 
-                        </p>
-                        
-                    </div>
-                        <hr class="my-4">
-                      
-                    <div class="list-group">
-                        <h4 class="list-group-item-heading">Student</h4>
-                        <p class="list-group-item-text">
+                    <div class="col-md-12">
+                        <div class="col col-md-6">
+                            <div class="list-group">
+                                <h4 class="list-group-item-heading">Teacher</h4>
+                                <p class="list-group-item-text">
+                                    <li class="list-group-item">Create Quiz Competition with questions</li>
+                                    <li class="list-group-item">Add Hints to questions</li>
+                                    <li class="list-group-item">Launch Quiz!</li>
+
+                                </p>    
                             
-                        </p>
-                        
+                            </div>
+                        </div>
+                        <div class="col col-md-6">
+                            <div class="list-group">
+                                <h4 class="list-group-item-heading">Student</h4>
+                                <p class="list-group-item-text">
+                                    <li class="list-group-item">Register to Competitions</li>
+                                    <li class="list-group-item">Take part in Quizzes</li>
+                                    <li class="list-group-item">Achieve the highest score!</li>
+
+                                </p>    
+                            
+                            </div>
+                        </div>
                     </div>
+
                 
 
-                      <p class="lead">
+                    <p class="lead">
                         @if (Auth::check())
                             <a href="{{ url('/home') }}" class="btn btn-primary" role="button">Home</a>
                         @else
@@ -123,15 +149,9 @@
                                 Register
                             </a>
                         @endif
-                      </p>
+                    </p>
                 </div>
 
-
-                </p>
-                <p >
-
-
-                </p>
    
             </div>
         </div>
