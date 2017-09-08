@@ -70,6 +70,7 @@
             img {
                 width: auto;
                 height: auto;
+                max-width: 40vw;
                 max-height: 40vh;
             }
 
