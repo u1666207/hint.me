@@ -29,7 +29,7 @@
             }
 
             .flex-center {
-                align-items: center;
+                /*align-items: center;*/
                 display: flex;
                 justify-content: center;
             }
@@ -65,6 +65,12 @@
 
             .m-b-md {
                 margin-bottom: 30px;
+            }
+
+            img {
+                width: auto;
+                height: auto;
+                max-height: 40vh;
             }
 
             li {
