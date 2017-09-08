@@ -2144,6 +2144,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -2154,18 +2174,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             scores: [],
             quiz_id: this.questions[0].quiz_id,
             liveQuestion: [],
-            minutes: 0,
-            seconds: 0
-
+            seconds: 0,
+            show: false
         };
     },
 
 
     methods: {
-        nextQuestion: function nextQuestion() {
-
-            this.id++;
-        },
         getHint: function getHint(hint) {
             axios.post('/live/gethint', {
                 hint_id: hint.id
@@ -2191,9 +2206,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 params: {
                     quiz_id: this.quiz_id
                 } }).then(function (response) {
-                console.log(response.data.liveQuestion);
-                this.liveQuestion = response.data.liveQuestion;
-                this.seconds = response.data.seconds;
+                if (response.data.liveQuestion == 'null') {
+                    this.liveQuestion.body = 'Quiz ended';
+                    this.seconds = response.data.seconds;
+                    this.show = true;
+                } else {
+                    this.liveQuestion = response.data.liveQuestion;
+                    this.seconds = response.data.seconds;
+                }
             }.bind(this));
         }
     },
@@ -2313,6 +2333,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['questions'],
@@ -2321,7 +2365,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             scores: [],
             quiz_id: this.questions[0].quiz_id,
             liveQuestion: [],
-            seconds: 0
+            seconds: 0,
+            show: false
 
         };
     },
@@ -2339,7 +2384,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 params: {
                     quiz_id: this.quiz_id
                 } }).then(function (response) {
-                console.log(response); // ex.: { user: 'Your User'}
+                //console.log(response); // ex.: { user: 'Your User'}
                 this.scores = response.data.scores;
             }.bind(this));
         },
@@ -2349,9 +2394,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 params: {
                     quiz_id: this.quiz_id
                 } }).then(function (response) {
-                //console.log(this.liveQuestion.body); // ex.: { user: 'Your User'}
-                this.liveQuestion = response.data.liveQuestion;
-                this.seconds = response.data.seconds;
+                if (response.data.liveQuestion == 'null') {
+                    this.liveQuestion.body = 'Quiz ended';
+                    this.seconds = response.data.seconds;
+                    this.show = true;
+                } else {
+                    this.liveQuestion = response.data.liveQuestion;
+                    this.seconds = response.data.seconds;
+                }
             }.bind(this));
         }
     },
@@ -4896,7 +4946,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)();
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 /***/ }),
 /* 42 */
@@ -32830,7 +32880,37 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_c('div', {
       staticClass: "card card-block"
     }, [_vm._v("\n                                    " + _vm._s(hint.body) + "\n                                ")])])])])
-  }))])])]), _vm._v(" "), _c('div', {
+  })), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.show),
+      expression: "show"
+    }]
+  }, [_c('h2', [_vm._v(" Correct Answers: ")]), _vm._v(" "), _vm._l((_vm.questions), function(question) {
+    return _c('div', {
+      staticClass: "list-group"
+    }, [_c('h4', {
+      staticClass: "list-group-item-heading"
+    }, [_vm._v(_vm._s(question.body))]), _vm._v(" "), (question.isMultiple) ? _c('div', _vm._l((question.multiple), function(multiple) {
+      return _c('div', [_c('div', {
+        directives: [{
+          name: "show",
+          rawName: "v-show",
+          value: (multiple.isCorrect),
+          expression: "multiple.isCorrect"
+        }]
+      }, [_c('p', {
+        staticClass: "list-group-item-text"
+      }), _c('li', {
+        staticClass: "list-group-item"
+      }, [_vm._v(_vm._s(multiple.answer))]), _vm._v(" "), _c('p')])])
+    })) : _c('div', [_c('p', {
+      staticClass: "list-group-item-text"
+    }), _c('li', {
+      staticClass: "list-group-item"
+    }, [_vm._v(_vm._s(question.short.correct_answer))]), _vm._v(" "), _c('p')])])
+  })], 2)])])]), _vm._v(" "), _c('div', {
     staticClass: "col-md-4"
   }, [_c('div', {
     staticClass: "panel panel-default"
@@ -32880,15 +32960,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "panel-heading"
   }, [_c('h4', [_c('b', [_vm._v(_vm._s(_vm.liveQuestion.body))])])]), _vm._v(" "), _c('div', {
     staticClass: "panel-body"
-  }, [(_vm.liveQuestion.isMultiple) ? _c('div', [_c('multiple', {
+  }, [(_vm.liveQuestion.isMultiple) ? _c('div', [(!_vm.show) ? _c('multiple', {
     attrs: {
       "liveQuestion": _vm.liveQuestion
     }
-  })], 1) : _c('div', [_c('short', {
+  }) : _vm._e()], 1) : _c('div', [(!_vm.show) ? _c('short', {
     attrs: {
       "liveQuestion": _vm.liveQuestion
     }
-  })], 1), _vm._v(" "), _c('ul', {
+  }) : _vm._e()], 1), _vm._v(" "), _c('ul', {
     staticClass: "list-group",
     staticStyle: {
       "font-size": "1px"
@@ -32926,7 +33006,37 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_c('div', {
       staticClass: "card card-block"
     }, [_vm._v("\n                                    " + _vm._s(hint.body) + "\n                                ")])])])])
-  }))])])]), _vm._v(" "), _c('div', {
+  })), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.show),
+      expression: "show"
+    }]
+  }, [_c('h2', [_vm._v(" Correct Answers: ")]), _vm._v(" "), _vm._l((_vm.questions), function(question) {
+    return _c('div', {
+      staticClass: "list-group"
+    }, [_c('h4', {
+      staticClass: "list-group-item-heading"
+    }, [_vm._v(_vm._s(question.body))]), _vm._v(" "), (question.isMultiple) ? _c('div', _vm._l((question.multiple), function(multiple) {
+      return _c('div', [_c('div', {
+        directives: [{
+          name: "show",
+          rawName: "v-show",
+          value: (multiple.isCorrect),
+          expression: "multiple.isCorrect"
+        }]
+      }, [_c('p', {
+        staticClass: "list-group-item-text"
+      }), _c('li', {
+        staticClass: "list-group-item"
+      }, [_vm._v(_vm._s(multiple.answer))]), _vm._v(" "), _c('p')])])
+    })) : _c('div', [_c('p', {
+      staticClass: "list-group-item-text"
+    }), _c('li', {
+      staticClass: "list-group-item"
+    }, [_vm._v(_vm._s(question.short.correct_answer))]), _vm._v(" "), _c('p')])])
+  })], 2)])])]), _vm._v(" "), _c('div', {
     staticClass: "col-md-4"
   }, [_c('div', {
     staticClass: "panel panel-default"

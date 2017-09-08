@@ -57,7 +57,7 @@
                                             </div>
                                             <div class="col-md-6">
                                             {{ Form::open(['route' => ['question.destroy', $competition->id,$quiz->id,$question->id], 'method' => 'delete']) }}
-                                                <button type="submit" class="btn btn-responsive btn-sm btn-danger" >Delete Question</button>
+                                                <button type="submit" class="btn btn-responsive btn-sm btn-danger" onclick="return confirm('All related data will be deleted. Are you sure you want to delete the question?')"  >Delete Question</button>
                                             {{ Form::close() }}
                                             </div>
                                         </div>

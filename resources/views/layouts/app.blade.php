@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Hint.Me!</title>
+    <title>Hint Master</title>
 
     <!-- Styles -->
     @yield('styles')
@@ -39,7 +39,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        Hint.Me!
+                        Hint Master
                     </a>
                 </div>
 

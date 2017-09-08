@@ -29,6 +29,30 @@
                             </li>
                         </div>
                     </ul>
+                    
+                    <div v-show="show">
+                        <h2> Correct Answers: </h2>
+                        <div v-for="question in questions" class="list-group">
+                            <h4 class="list-group-item-heading">{{question.body}}</h4>
+                            <div v-if="question.isMultiple">
+                                <div v-for="multiple in question.multiple">
+                                    <div v-show="multiple.isCorrect">
+                                        <p class="list-group-item-text">
+                                            <li class="list-group-item">{{multiple.answer}}</li>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div v-else>    
+                                <p class="list-group-item-text">
+                                    <li class="list-group-item">{{question.short.correct_answer}}</li>
+                                </p>
+                            </div>    
+                            
+                        </div>
+                    </div>
+                    
+
                 </div>
 
 
@@ -68,6 +92,7 @@
                 quiz_id: this.questions[0].quiz_id,
                 liveQuestion: [],
                 seconds: 0,
+                show: false
             
             }
         },        
@@ -88,7 +113,7 @@
                     params: {
                         quiz_id: this.quiz_id
                     }}).then(function(response){
-                    console.log(response); // ex.: { user: 'Your User'}
+                    //console.log(response); // ex.: { user: 'Your User'}
                     this.scores = response.data.scores;
                 }.bind(this));
             },
@@ -98,9 +123,16 @@
                     params: {
                         quiz_id: this.quiz_id
                     }}).then(function(response){
-                    //console.log(this.liveQuestion.body); // ex.: { user: 'Your User'}
-                    this.liveQuestion = response.data.liveQuestion;
-                    this.seconds = response.data.seconds;
+                    if(response.data.liveQuestion == 'null'){
+                        this.liveQuestion.body = 'Quiz ended';
+                        this.seconds=response.data.seconds;
+                        this.show=true;
+
+                    }else{
+                        this.liveQuestion = response.data.liveQuestion;
+                        this.seconds = response.data.seconds;
+
+                    }
                 }.bind(this));
 
             }

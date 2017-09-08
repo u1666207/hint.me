@@ -64,7 +64,7 @@ class Competition extends Model
             $quiz->destroyQuiz();
         }
 
-        //delete quiz
+        //delete comp
         $this->delete();
 
          //return

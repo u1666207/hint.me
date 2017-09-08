@@ -46,6 +46,8 @@ Route::post('/live/gethint','StudentController@getHint')->name('student.quiz.hin
 
 //Quiz routes for teacher
 //Resource routes
+Route::get('download/quiz/{competition}/{quiz}/','QuizController@getData')->name('quiz.data');
+Route::get('reset/quiz/{competition}/{quiz}/','QuizController@resetQuiz')->name('quiz.reset');
 Route::get('/quiz/{competition}/{quiz}/edit','QuizController@edit')->name('quiz.edit');
 Route::delete('/quiz/{competition}/{quiz}/delete','QuizController@destroy')->name('quiz.destroy');
 Route::get('/quiz/{competition}/{quiz}/launch','QuizController@launch')->name('quiz.launch');

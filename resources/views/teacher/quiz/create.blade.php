@@ -28,7 +28,7 @@
                         <div class="form-group">
 
                             <div class="col-md-2 col-md-offset-4">
-                                <a class="btn btn-outline-primary" href="{{ route('home') }}">Cancel</a>
+                                <a class="btn btn-outline-primary" href="{{ route('competition.show',$competition->id) }}">Cancel</a>
                             </div>
                             <div class="col-md-2">
                                 <button type="submit" class="btn btn-primary">

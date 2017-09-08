@@ -25,4 +25,17 @@ class Hint extends Model
         return $this->hasMany(Student_hint::class);
     }
 
+    public function destroyHint()
+    {   
+
+        //delete actions of students
+        $student_hint = Student_hint::where('hint_id',$this->id)->delete();
+
+        //delete hint
+        $this->delete();
+
+         //return
+        return;
+    }
+
 }

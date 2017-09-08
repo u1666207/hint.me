@@ -69,8 +69,10 @@
                                         
                                                 @endif
                                                 <th>{{$competition->teacher->first_name . ' ' . $competition->teacher->last_name}}</th>
-                                                @if(!$quiz->isLive)
+                                                @if(is_null($quiz->isLive))
                                                     <th>Offline</th> 
+                                                @elseif($quiz->isLive == 0)
+                                                    <th>Finished</th> 
                                                 @else
                                                     <th><I><b>Now Live!</I></b></th>
                                                 @endif

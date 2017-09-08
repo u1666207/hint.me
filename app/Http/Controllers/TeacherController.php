@@ -97,7 +97,8 @@ class TeacherController extends Controller
     public function getQuestion()
     {
         $quiz = Quiz::find(request('quiz_id'));
-        if(!is_null($quiz->isLive)){
+
+        if(!($quiz->isLive==0)){
             $question=Question::where('id',$quiz->isLive)->with(['multiple','short','hint'])->first(); 
             
             $updated = $quiz->updated_at;
@@ -105,11 +106,11 @@ class TeacherController extends Controller
 
             $seconds=$finish->diffInSeconds(Carbon::now());
              
+            
             $seconds = gmdate('i:s', $seconds);
-
             return response(['liveQuestion'=>$question,'seconds'=>$seconds]);
         }else{
-            return response(['liveQuestion'=>null,'seconds'=>$seconds]);
+            return response(['liveQuestion'=>'null','seconds'=>' ']);
         }
     }
 }

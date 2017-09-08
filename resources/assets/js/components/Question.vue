@@ -7,11 +7,11 @@
             <div class="panel-body">
                 <div v-if="liveQuestion.isMultiple" >
                     <!-- Multiple choice options -->
-                    <multiple :liveQuestion='liveQuestion'></multiple>    
+                    <multiple :liveQuestion='liveQuestion' v-if="!show"></multiple>    
                 </div>
                 <div v-else>
                     <!-- Short answer -->
-                    <short :liveQuestion='liveQuestion'></short>   
+                    <short :liveQuestion='liveQuestion' v-if="!show"></short>   
                 </div>
 
                 <ul class="list-group" style=" font-size: 1px;">
@@ -29,10 +29,30 @@
                         </li>
                     </div>
                 </ul>
+                <div v-show="show">
+                        <h2> Correct Answers: </h2>
+                        <div v-for="question in questions" class="list-group">
+                            <h4 class="list-group-item-heading">{{question.body}}</h4>
+                            <div v-if="question.isMultiple">
+                                <div v-for="multiple in question.multiple">
+                                    <div v-show="multiple.isCorrect">
+                                        <p class="list-group-item-text">
+                                            <li class="list-group-item">{{multiple.answer}}</li>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div v-else>    
+                                <p class="list-group-item-text">
+                                    <li class="list-group-item">{{question.short.correct_answer}}</li>
+                                </p>
+                            </div>    
+                            
+                        </div>
+                    </div>
+
             </div>
 
-            <!-- <button class="btn btn-primary" align="right" @click.prevent="nextQuestion">Next Question</button>
-            -->
         </div>
     </div>
     <div class="col-md-4">
@@ -70,18 +90,13 @@
                 scores: [],
                 quiz_id:this.questions[0].quiz_id,
                 liveQuestion: [],
-                minutes: 0,
                 seconds: 0,
-            
+                show:false,
             }
         },        
     
 
         methods: {
-            nextQuestion(){
-                
-                this.id++;
-            },
 
             getHint(hint){
                 axios.post('/live/gethint',{
@@ -109,9 +124,15 @@
                     params: {
                         quiz_id: this.quiz_id
                     }}).then(function(response){
-                    console.log(response.data.liveQuestion); 
-                    this.liveQuestion = response.data.liveQuestion;
-                    this.seconds = response.data.seconds;
+                    if(response.data.liveQuestion == 'null'){
+                        this.liveQuestion.body = 'Quiz ended';
+                        this.seconds=response.data.seconds;
+                        this.show = true;
+                    }else{
+                        this.liveQuestion = response.data.liveQuestion;
+                        this.seconds = response.data.seconds;
+
+                    }
                 }.bind(this));
             }
         },

@@ -17,7 +17,7 @@ class CreateQuizzesTable extends Migration
             $table->increments('id');
             $table->integer('competition_id')->unsigned();
             $table->string('name');
-            $table->integer('isLive')->default(0)->nullable();
+            $table->integer('isLive')->nullable()->default(null);
             $table->foreign('competition_id')->references('id')->on('competitions');
             $table->timestamps();
         });

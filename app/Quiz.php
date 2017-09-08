@@ -45,6 +45,9 @@ class Quiz extends Model
             $question->destroyQuestion();
         }
 
+        //get the scores of this quiz
+        $scores= Score::where('quiz_id',$this->id)->delete();
+
         //delete quiz
         $this->delete();
 
@@ -60,8 +63,8 @@ class Quiz extends Model
         });
         if($questions->isEmpty()){
             $this->update([
-            'isLive' => 0
-        ]);
+                'isLive' => 0
+            ]);
         }else{
             $liveQuestion=$questions->min();
 

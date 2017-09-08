@@ -41,7 +41,7 @@
                                                     </div>
                                                     <div class="col-md-1 col-md-offset-1"> 
                                                         {{ Form::open(['route' => ['competition.destroy', $competition->id], 'method' => 'delete']) }}
-                                                            <button type="submit" class="btn btn-sm btn-responsive btn-danger" >Delete</button>
+                                                            <button type="submit" class="btn btn-sm btn-responsive btn-danger" onclick="return confirm('All related data will be deleted. Are you sure you want to delete the competition?')" >Delete</button>
                                                         {{ Form::close() }}
                                                     </div>
                                                 </div>

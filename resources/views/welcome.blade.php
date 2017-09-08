@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Hint.Me!</title>
+        <title>Hint Master</title>
 
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         
@@ -45,11 +45,12 @@
             }
 
             .content {
+                margin-top:5em;
                 text-align: center;
             }
 
-            .title {
-                font-size: 84px;
+            .title {   
+                font-size: 5em;
             }
 
             .links > a {
@@ -97,16 +98,14 @@
                 </div>
             @endif
 
-            <div class="content">
-
-
-                
+            <div class="content"> 
 
                 <div class="jumbotron">
                     <div class="title m-b-md">
-                        Hint.Me!
+                        <img src="{{ asset('hintmaster.png') }}">
                     </div>
-
+                    <h4>Live Quiz competitions in the classroom with hints!</h4>
+                    <hr>
                     <div class="col-md-12">
                         <div class="col col-md-6">
                             <div class="list-group">
@@ -134,7 +133,7 @@
                         </div>
                     </div>
 
-                
+                    
 
                     <p class="lead">
                         @if (Auth::check())

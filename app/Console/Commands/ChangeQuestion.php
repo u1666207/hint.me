@@ -41,19 +41,25 @@ class ChangeQuestion extends Command
      */
     public function handle()
     {
-
+        //iterate 60 times, every second of a minute
         for($i = 0; $i<60; $i++){
+            //take all live quizzes
             $quizzes= Quiz::live();
             foreach($quizzes as $quiz){
-                $question=Question::find($quiz->isLive); 
+                //find the question that is live
+                $question=Question::find($quiz->isLive);
+
+                //find finish time of this question 
                 $updated = $quiz->updated_at;
                 $finish= $updated->addMinutes($question->minutes)->addSeconds($question->seconds);
                 
+                //if time now passed finished time
                 if ($finish < Carbon::now()){
+                    //Next Question 
                     $quiz->nextQuestion();
                 }
             }
-            sleep(1);
+            sleep(1);//sleep 1s
         }
     }
 

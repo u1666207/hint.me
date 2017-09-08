@@ -77,7 +77,7 @@
                                                 
                                                 <th>{{ $competition->teacher->first_name .' '. $competition->teacher->last_name }}</th>
                                                     <th>{{ $competition->teacher->institution }}</th>
-                                                <th><a href="{{ route('student.comp.deregister',['id'=>$id,'competition'=>$competition->id]) }}" class="btn btn-danger btn-responsive btn-sm" role="button">Deregister</a></th>
+                                                <th><a href="{{ route('student.comp.deregister',['id'=>$id,'competition'=>$competition->id]) }}" class="btn btn-danger btn-responsive btn-sm" role="button" onclick="return confirm('Are you sure?')">Deregister</a></th>
                                             </tr>
                                         @endforeach
 

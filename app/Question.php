@@ -62,7 +62,14 @@ class Question extends Model
             $short = Short::where('question_id',$this->id)->delete();
         }
         //delete hints related to question
-        $hints = Hint::where('question_id',$this->id)->delete();
+        $hints = Hint::where('question_id',$this->id)->get();
+        foreach ($hints as $hint) {
+            $hint->destroyHint();
+        }
+
+        //delete answers
+        $answers = Answer::where('question_id',$this->id)->delete();
+
         //delete question
         $this->delete();
 

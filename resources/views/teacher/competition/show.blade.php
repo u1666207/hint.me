@@ -17,7 +17,7 @@
                             <a href="{{ route('quiz.create',['competition'=>$competition->id]) }}" class="btn btn-success btn-responsive" role="button">Add new quiz</a>
                             
                             <div class="table-responsive fixed-panel">
-                                <table class="table table-sm">
+                            <table class="table table-sm">
                                     <thead> 
                                         <tr>
                                             <th>#</th>
@@ -39,7 +39,7 @@
                                                     <th><a href="{{ route('quiz.show',['competition'=>$competition->id,'quiz'=>$quiz->id]) }}" >{{ $quiz->name }}</a></th>
                                                     
 
-                                                    @if($quiz->isLive == 0)
+                                                    @if($quiz->isLive === null)
                                                         <th><a href="{{ route('quiz.launch',['competition'=>$competition->id,'quiz'=>$quiz->id]) }}" class="btn btn-warning btn-responsive btn-sm" role="button"><b>Launch Now!</b></a></th> 
                                                     @elseif($quiz->isLive > 0)
                                                         <th><b style="color:red;">Now Live!</b></th> 
@@ -50,15 +50,16 @@
                                                     
                                                     @if($quiz->isLive > 0)
                                                         <th><a href="{{ route('teacher.quiz.live',['competition'=>$competition->id,'quiz'=>$quiz->id]) }}" class="btn btn-success btn-responsive btn-sm" role="button"><b>Watch Live!</b></a></th> 
-                                                    @elseif(is_null($quiz->isLive))
+                                                    @elseif(!is_null($quiz->isLive))
                                                         <th>
-                                                            <button class="btn btn-responsive btn-sm" role="button">
-                                                                <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>Data
-                                                            </button>
+                                                            <a href="{{ route('quiz.data',['competition'=>$competition->id,'quiz'=>$quiz->id]) }}" class="btn btn-responsive btn-sm btn-default" role="button">
+                                                                 <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>Data
+                                                            </a>
+                                                            
                                                    
-                                                            <button class="btn btn-responsive btn-sm" role="button">
+                                                             <a href="{{ route('quiz.reset',['competition'=>$competition->id,'quiz'=>$quiz->id]) }}" class="btn btn-responsive btn-sm btn-default" role="button" onclick="return confirm('All related data will be deleted. Continue?')" >
                                                                 <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>Reset
-                                                            </button>
+                                                            </a>
                                                          </th>
                                                     @else
                                                         <th></th>
@@ -74,7 +75,7 @@
                                                     <th>
                                                       
                                                             {{ Form::open(['route' => ['quiz.destroy', $competition->id,$quiz->id], 'method' => 'delete']) }}
-                                                                <button type="submit" class="btn btn-responsive btn-sm btn-danger" >Delete</button>
+                                                                <button type="submit" class="btn btn-responsive btn-sm btn-danger" onclick="return confirm('All related data will be deleted. Are you sure you want to delete the quiz?')" >Delete</button>
                                                             {{ Form::close() }}
                                                       
                                              
