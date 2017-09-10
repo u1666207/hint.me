@@ -57,7 +57,7 @@
     </div>
     <div class="col-md-4">
         <div class="panel panel-default">
-            <div class="panel-heading" :minutes="minutes" :seconds="seconds"><h4> {{ seconds }} </h4></div>
+            <div class="panel-heading" :seconds="seconds"><h4> {{ seconds }} </h4></div>
 
             <div class="panel-body">
                 <ul class="list-group">
@@ -97,18 +97,17 @@
     
 
         methods: {
-
             getHint(hint){
                 axios.post('/live/gethint',{
                     hint_id: hint.id,
                 });
                 
             },
-
             addHash(index){
                 return '#'+index;
             },
 
+            //Function that LOADs SCORES to leaderboard
             loadScores: function () {
                 axios.get('/live/scores/',{
                     params: {
@@ -118,12 +117,13 @@
                     this.scores = response.data.scores;
                 }.bind(this));
             },
-
+            //Function that loads live question
             loadQuestion: function () {
                 axios.get('/live/question/',{
                     params: {
                         quiz_id: this.quiz_id
                     }}).then(function(response){
+                    //If null then quiz ended//if not then update livequestion
                     if(response.data.liveQuestion == 'null'){
                         this.liveQuestion.body = 'Quiz ended';
                         this.seconds=response.data.seconds;
@@ -131,13 +131,11 @@
                     }else{
                         this.liveQuestion = response.data.liveQuestion;
                         this.seconds = response.data.seconds;
-
                     }
                 }.bind(this));
             }
         },
-
-
+        //Functions that call loadScores every 2s and loadQuestion every 1s
         mounted: function () {
             this.loadScores();
             setInterval(function () {

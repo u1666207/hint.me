@@ -23,6 +23,7 @@
 
                             @foreach($questions as $question)
                                 <div class="panel panel-default">
+                                    <div class="panel-heading">Question ID: {{$question->id}}</div>
                                     <div class="panel-body">
                                         <p>
                                             <b>Question:</b> {{$question->body}}

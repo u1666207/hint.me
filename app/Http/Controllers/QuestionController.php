@@ -135,13 +135,6 @@ class QuestionController extends Controller
     {
         return view('teacher.question.edit')->with('competition',$competition)->with('quiz', $quiz)->with('question',$question);
 
-        /*
-        if ($question->isMultiple){//if teacher wants to edit a multiple choice question
-            return view('teacher.question.edit_multiple')->with('competition',$competition)->with('quiz', $quiz)->with('question',$question);
-        }else{//>> >> short answered question
-            return view('teacher.question.edit_short')->with('competition',$competition)->with('quiz', $quiz)->with('question',$question);
-        }
-        */
     }
 
 
@@ -165,14 +158,7 @@ class QuestionController extends Controller
 
         $question->save();
 
-        /*
-        //validate and update data based on type of question
-        if ($question->isMultiple){//if teacher wants to update a multiple choice question
-            $this->update_multiple($request,$question);
-        }else{//>> >> short answered question
-            $this->update_short($request, $question);
-        }
-        */
+
 
          //redirect
         return redirect()->route('quiz.show',['competition'=>$competition,'quiz'=>$quiz]);

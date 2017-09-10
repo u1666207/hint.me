@@ -2191,6 +2191,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
 
 
+        //Function that LOADs SCORES to leaderboard
         loadScores: function loadScores() {
             axios.get('/live/scores/', {
                 params: {
@@ -2200,12 +2201,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.scores = response.data.scores;
             }.bind(this));
         },
-
+        //Function that loads live question
         loadQuestion: function loadQuestion() {
             axios.get('/live/question/', {
                 params: {
                     quiz_id: this.quiz_id
                 } }).then(function (response) {
+                //If null then quiz ended//if not then update livequestion
                 if (response.data.liveQuestion == 'null') {
                     this.liveQuestion.body = 'Quiz ended';
                     this.seconds = response.data.seconds;
@@ -2217,7 +2219,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }.bind(this));
         }
     },
-
+    //Functions that call loadScores every 2s and loadQuestion every 1s
     mounted: function mounted() {
         this.loadScores();
         setInterval(function () {
@@ -2463,6 +2465,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['liveQuestion'],
@@ -2481,7 +2484,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             //presist to server
-            //this.question_id=this.liveQuestion.id;
+            this.question_id = this.liveQuestion.id;
             axios.post('/live/response', {
                 answer: this.answer,
                 question_id: this.question_id
@@ -33043,7 +33046,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('div', {
     staticClass: "panel-heading",
     attrs: {
-      "minutes": _vm.minutes,
       "seconds": _vm.seconds
     }
   }, [_c('h4', [_vm._v(" " + _vm._s(_vm.seconds) + " ")])]), _vm._v(" "), _c('div', {
@@ -33163,7 +33165,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.onSubmit($event)
       }
     }
-  }, [_c('div', {
+  }, [_c('input', {
+    attrs: {
+      "name": "_token",
+      "type": "hidden"
+    }
+  }), _vm._v(" "), _c('div', {
     staticClass: "control"
   }, [_c('label', {
     attrs: {
